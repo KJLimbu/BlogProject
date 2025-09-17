@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './Home'
 import CreateBlogs from './pages/createblogs/CreateBlogs'
 import Singlepage from './pages/singlepage/Singlepage'
+import Updateblog from './pages/updateblog/Updateblog'
 
 const App = () => {
   return (
@@ -11,11 +12,12 @@ const App = () => {
           <Routes>
             <Route path='/' element={<Home/>} />
             <Route path='/createblogs' element={<CreateBlogs/>} />
-            <Route path='/singlepage' element={<Singlepage/>} />
+            <Route path='/singlepage/:id' element={<Singlepage/>} />
+            <Route path='/updateblog/:id' element={<Updateblog/>} />
           </Routes>
       </BrowserRouter>
     </>
   )
-}
+};
 
 export default App
