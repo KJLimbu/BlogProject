@@ -5,6 +5,7 @@ import  axios  from 'axios';
 
 const CreateBlogs = () => {
 
+    const blogProjects = import.meta.env.VITE_BACKEND_URI;
     const navigate = useNavigate();
 
     const [data, setData] = useState({
@@ -25,7 +26,7 @@ const CreateBlogs = () => {
     const createblog = async (e) => {
         e.preventDefault();
 
-        const res = await axios.post("http://localhost:3000/blogs", data);
+        const res = await axios.post(blogProjects+"/blogs", data);
 
         if(res.status == 200) {
             alert("Blog created successfully");

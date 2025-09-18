@@ -6,11 +6,12 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 const Home = () => {
-
+    
+    const blogProject = import.meta.env.VITE_BACKEND_URI;
     const [data, setData] = useState([]);
 
     const fetchData = async()=> {
-        const res = await axios.get("http://localhost:3000/blogs");
+        const res = await axios.get(blogProject + "/blogs");
 
         setData(res.data.data);
     }

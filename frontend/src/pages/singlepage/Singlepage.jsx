@@ -6,12 +6,13 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 
 const Singlepage = () => {
     
+    const blogProjects = import.meta.env.VITE_BACKEND_URI;
     const navigate = useNavigate();
     const [data, setData] = useState({});
     const { id } = useParams();
 
     const fetchData = async ()=> {
-        const res = await axios.get("http://localhost:3000/blogs/" + id);
+        const res = await axios.get(blogProjects+"/blogs/" + id);
 
         if(res.status == 200){
             setData(res.data.data);
@@ -21,7 +22,7 @@ const Singlepage = () => {
     const deleteBlog = async ()=> {
         alert("Would you like to delete this blog ?");
 
-        const res = await axios.delete("http://localhost:3000/blogs/"+ id);
+        const res = await axios.delete(blogProjects+"/blogs/"+ id);
 
         if(res.status == 200) {
             alert("Blog deleted!");

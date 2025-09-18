@@ -6,6 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 const Updateblog = () => {
 
+  const blogProjects = import.meta.env.VITE_BACKEND_URI;
   const navigate = useNavigate();
  
   const [data, setData] = useState({
@@ -26,7 +27,7 @@ const Updateblog = () => {
   }
 
   const fetchData = async()=> {
-    const res =  await axios.get("http://localhost:3000/blogs/"+ id);
+    const res =  await axios.get(blogProjects+"/blogs/"+ id);
 
     if(res.status == 200) {
       setData(res.data.data);
@@ -36,7 +37,7 @@ const Updateblog = () => {
   const updateBlog = async(e)=> {
     e.preventDefault(); 
 
-    const res = await axios.patch("http://localhost:3000/blogs/"+ id, data);
+    const res = await axios.patch(blogProjects+"/blogs/"+ id, data);
 
     if(res.status == 200 ) {
       alert("Blog updated!");

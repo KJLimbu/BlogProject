@@ -1,8 +1,7 @@
 // REQUIRES EXPRESS
 const express = require("express");
 
-// REQUIRES MONGOOSE AND DATABASE CONNECTION
-const mongoose = require("mongoose")
+// REQUIRES DATABASE CONNECTION
 const { databaseConnect } = require("./database/dbConnect");
 
 // REQUIRES MODEL BLOG SCHEMA
@@ -11,12 +10,15 @@ const Blog = require("./model/blogModel");
 // REQUIRES CORS
 const cors = require("cors");
 
+// REQUIRES DOTNENV CONFIG
+require("dotenv").config();
+
 const app = express();
 
 app.use(cors());// allows all APIs to interact with the frontend
 
 // DATABASE CONNECTION
-databaseConnect();
+databaseConnect(process.env.MONGO_URI);
 
 // PREPARE APIs FOR JSON DATA
 app.use(express.json());
@@ -117,6 +119,6 @@ app.delete("/blogs/:id", async(req, res)=> {
 
 
 
-app.listen(3000, (req, res)=> {
-    console.log("Server is running on port 3000");
+app.listen(process.env.PORT, (req, res)=> {
+    console.log("Server is running");
 });
